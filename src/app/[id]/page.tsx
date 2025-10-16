@@ -10,6 +10,8 @@ export default async function MoviePage({
 }): Promise<JSX.Element> {
   const { id } = await params;
   const apiKey = process.env.API_KEY;
+  if (!apiKey)
+    throw new Error("tmdb api key missing. set API_KEY in your environment");
 
   const detailsUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=fa-IR`;
   const creditsUrl = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}&language=en-US`;
